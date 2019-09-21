@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "DesignPatternsRun",
+            "request": "launch",
+            "mainClass": "com.sekhanov.desingpatterns.DesignPatternsRun",
+            "console": "internalConsole"
+        }
+    ]
+}
