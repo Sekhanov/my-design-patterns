@@ -8,6 +8,10 @@ import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Chec
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.CheckLoginExistMiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.MiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Server;
+import com.sekhanov.desingpatterns.creationalpatterns.singleton.Singleton;
+import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Circle;
+import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Delegate;
+import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Rectangle;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,12 +26,26 @@ public class DesignPatternsRun implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("hello!");
-		chainOfResponsibility();
+		// demoChainOfResponsibility();
+		// demoSingleton();
+		demoDelegate();
 
 	}
 
-	private void chainOfResponsibility() {
+	private void demoDelegate() {
+		Delegate delegate = new Delegate(new Circle());
+		delegate.draw();
+		Delegate delegate2 = new Delegate(new Rectangle());
+		delegate2.draw();
+	}
+
+	private void demoSingleton() {
+		Singleton singleton1 = Singleton.getInstance(1);
+		Singleton singleton2 = Singleton.getInstance(2);
+		System.out.println("singleton2 value = " + singleton2.getValue());
+	}
+
+	private void demoChainOfResponsibility() {
 		Server server = new Server();
 		server.addUser("admin", "admin_pass");
 		server.addUser("user", "user_pass");
