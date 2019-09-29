@@ -12,6 +12,7 @@ import com.sekhanov.desingpatterns.creationalpatterns.singleton.Singleton;
 import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Circle;
 import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Delegate;
 import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Rectangle;
+import com.sekhanov.desingpatterns.structuralpatterns.facade.PcFacade;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,8 +29,13 @@ public class DesignPatternsRun implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// demoChainOfResponsibility();
 		// demoSingleton();
-		demoDelegate();
+		// demoDelegate();
+		demoFacade();
 
+	}
+
+	private void demoFacade() {
+		new PcFacade().copyFromDvdRomToHdd();
 	}
 
 	private void demoDelegate() {
