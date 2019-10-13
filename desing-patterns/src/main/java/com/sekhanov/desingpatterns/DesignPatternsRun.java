@@ -8,6 +8,8 @@ import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Chec
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.CheckLoginExistMiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.MiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Server;
+import com.sekhanov.desingpatterns.creationalpatterns.builder.Message;
+import com.sekhanov.desingpatterns.creationalpatterns.builder.MessageBuilder;
 import com.sekhanov.desingpatterns.creationalpatterns.singleton.Singleton;
 import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Circle;
 import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Delegate;
@@ -30,8 +32,19 @@ public class DesignPatternsRun implements CommandLineRunner {
 		// demoChainOfResponsibility();
 		// demoSingleton();
 		// demoDelegate();
-		demoFacade();
+		// demoFacade();
+		demoBuilder();
 
+	}
+
+	private void demoBuilder() {
+		MessageBuilder messageBuilder = new MessageBuilder(new Message());
+		messageBuilder
+		.setSender("skhanov@mail.ru")
+		.setReceiver("qwer@qwer.ru")
+		.setTheme("theme")
+		.setBody("some text")
+		.sendMessage();
 	}
 
 	private void demoFacade() {
