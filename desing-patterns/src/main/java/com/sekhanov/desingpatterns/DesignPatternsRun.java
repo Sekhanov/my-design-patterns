@@ -19,6 +19,8 @@ import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Delegate;
 import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Rectangle;
 import com.sekhanov.desingpatterns.structuralpatterns.Composite.CircleComponent;
 import com.sekhanov.desingpatterns.structuralpatterns.Composite.CompositeGraphics;
+import com.sekhanov.desingpatterns.structuralpatterns.decorator.ConcreteComponent;
+import com.sekhanov.desingpatterns.structuralpatterns.decorator.ConcreteDecorator;
 import com.sekhanov.desingpatterns.structuralpatterns.facade.PcFacade;
 
 import org.springframework.boot.CommandLineRunner;
@@ -40,8 +42,14 @@ public class DesignPatternsRun implements CommandLineRunner {
 		// demoFacade();
 		// demoBuilder();
 		// demoObserver();
-		composite();
+		// composite();
+		decorator();
 
+	}
+
+	private void decorator() {
+		ConcreteDecorator concreteDecorator = new ConcreteDecorator(new ConcreteComponent());
+		concreteDecorator.show();
 	}
 
 	private void composite() {
