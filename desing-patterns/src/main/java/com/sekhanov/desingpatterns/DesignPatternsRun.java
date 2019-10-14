@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import com.sekhanov.desingpatterns.behavioralpatterns.Observer.Monitor;
+import com.sekhanov.desingpatterns.behavioralpatterns.Observer.TemperatureRegulator;
+import com.sekhanov.desingpatterns.behavioralpatterns.Observer.TemperatureSensor;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.CheckCorrectPasswordMiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.CheckLoginExistMiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.MiddleWare;
@@ -33,18 +36,23 @@ public class DesignPatternsRun implements CommandLineRunner {
 		// demoSingleton();
 		// demoDelegate();
 		// demoFacade();
-		demoBuilder();
+		// demoBuilder();
+		demoObserver();
 
+	}
+
+	private void demoObserver() {
+		TemperatureSensor temperatureSensor = new TemperatureSensor();
+		temperatureSensor.attach(new Monitor());
+		temperatureSensor.attach(new TemperatureRegulator());
+		temperatureSensor.setTemperature(50);
+		temperatureSensor.setTemperature(100);
 	}
 
 	private void demoBuilder() {
 		MessageBuilder messageBuilder = new MessageBuilder(new Message());
-		messageBuilder
-		.setSender("skhanov@mail.ru")
-		.setReceiver("qwer@qwer.ru")
-		.setTheme("theme")
-		.setBody("some text")
-		.sendMessage();
+		messageBuilder.setSender("skhanov@mail.ru").setReceiver("qwer@qwer.ru").setTheme("theme").setBody("some text")
+				.sendMessage();
 	}
 
 	private void demoFacade() {
