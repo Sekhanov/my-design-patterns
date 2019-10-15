@@ -13,6 +13,9 @@ import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Midd
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Server;
 import com.sekhanov.desingpatterns.behavioralpatterns.mediator.ConcreteMediator;
 import com.sekhanov.desingpatterns.behavioralpatterns.mediator.ConcreteSender;
+import com.sekhanov.desingpatterns.behavioralpatterns.strategy.Context;
+import com.sekhanov.desingpatterns.behavioralpatterns.strategy.StrategyOne;
+import com.sekhanov.desingpatterns.behavioralpatterns.strategy.StrategyTwo;
 import com.sekhanov.desingpatterns.behavioralpatterns.visitor.ConcreteVisitor;
 import com.sekhanov.desingpatterns.behavioralpatterns.visitor.Dot;
 import com.sekhanov.desingpatterns.behavioralpatterns.visitor.Visitor;
@@ -50,8 +53,17 @@ public class DesignPatternsRun implements CommandLineRunner {
 		// composite();
 		// decorator();
 		// visitor();
-		mediator();
+		// mediator();
+		strategy();
 
+	}
+
+	private void strategy() {
+		Context context = new Context();
+		context.setStrategy(new StrategyOne());
+		context.executeStrategy();
+		context.setStrategy(new StrategyTwo());
+		context.executeStrategy();
 	}
 
 	private void mediator() {
