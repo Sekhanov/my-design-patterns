@@ -11,6 +11,9 @@ import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Chec
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.CheckLoginExistMiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.MiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Server;
+import com.sekhanov.desingpatterns.behavioralpatterns.visitor.ConcreteVisitor;
+import com.sekhanov.desingpatterns.behavioralpatterns.visitor.Dot;
+import com.sekhanov.desingpatterns.behavioralpatterns.visitor.Visitor;
 import com.sekhanov.desingpatterns.creationalpatterns.builder.Message;
 import com.sekhanov.desingpatterns.creationalpatterns.builder.MessageBuilder;
 import com.sekhanov.desingpatterns.creationalpatterns.singleton.Singleton;
@@ -43,8 +46,19 @@ public class DesignPatternsRun implements CommandLineRunner {
 		// demoBuilder();
 		// demoObserver();
 		// composite();
-		decorator();
+		// decorator();
+		visitor();
 
+	}
+
+	private void visitor() {
+		com.sekhanov.desingpatterns.behavioralpatterns.visitor.Circle circle = new com.sekhanov.desingpatterns.behavioralpatterns.visitor.Circle(2, 4
+		);
+		circle.setRadius(10);
+		Dot dot = new Dot(20, 10);
+		Visitor visitor = new ConcreteVisitor();
+		visitor.visitDot(dot);
+		visitor.visitCircle(circle);		
 	}
 
 	private void decorator() {
@@ -54,9 +68,9 @@ public class DesignPatternsRun implements CommandLineRunner {
 
 	private void composite() {
 		CompositeGraphics compositeGraphics = new CompositeGraphics();
-		compositeGraphics.addComponent(new CircleComponent(5));	
-		compositeGraphics.addComponent(new CircleComponent(4));	
-		compositeGraphics.addComponent(new CircleComponent(3));	
+		compositeGraphics.addComponent(new CircleComponent(5));
+		compositeGraphics.addComponent(new CircleComponent(4));
+		compositeGraphics.addComponent(new CircleComponent(3));
 		compositeGraphics.paint();
 	}
 
