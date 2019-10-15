@@ -30,6 +30,8 @@ import com.sekhanov.desingpatterns.structuralpatterns.Composite.CompositeGraphic
 import com.sekhanov.desingpatterns.structuralpatterns.decorator.ConcreteComponent;
 import com.sekhanov.desingpatterns.structuralpatterns.decorator.ConcreteDecorator;
 import com.sekhanov.desingpatterns.structuralpatterns.facade.PcFacade;
+import com.sekhanov.desingpatterns.structuralpatterns.proxy.Producer;
+import com.sekhanov.desingpatterns.structuralpatterns.proxy.ProxyPhoneProducer;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -54,8 +56,15 @@ public class DesignPatternsRun implements CommandLineRunner {
 		// decorator();
 		// visitor();
 		// mediator();
-		strategy();
+		// strategy();
+		proxy();
 
+	}
+
+	private void proxy() {
+		Producer producer = new ProxyPhoneProducer();
+		System.out.println(producer.produceProduct());
+		System.out.println(producer.destroyProduct());
 	}
 
 	private void strategy() {
