@@ -11,6 +11,8 @@ import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Chec
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.CheckLoginExistMiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.MiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Server;
+import com.sekhanov.desingpatterns.behavioralpatterns.mediator.ConcreteMediator;
+import com.sekhanov.desingpatterns.behavioralpatterns.mediator.ConcreteSender;
 import com.sekhanov.desingpatterns.behavioralpatterns.visitor.ConcreteVisitor;
 import com.sekhanov.desingpatterns.behavioralpatterns.visitor.Dot;
 import com.sekhanov.desingpatterns.behavioralpatterns.visitor.Visitor;
@@ -47,9 +49,22 @@ public class DesignPatternsRun implements CommandLineRunner {
 		// demoObserver();
 		// composite();
 		// decorator();
-		visitor();
+		// visitor();
+		mediator();
 
 	}
+
+	private void mediator() {
+		ConcreteMediator concreteMediator = new ConcreteMediator();
+		ConcreteSender concreteSender = new ConcreteSender(concreteMediator, "one");
+		ConcreteSender concreteSender2 = new ConcreteSender(concreteMediator, "two");
+		ConcreteSender concreteSender3 = new ConcreteSender(concreteMediator, "three");
+		concreteMediator.addSender(concreteSender);
+		concreteMediator.addSender(concreteSender2);
+		concreteMediator.addSender(concreteSender3);
+		concreteSender.send("hello!");
+	}
+
 
 	private void visitor() {
 		com.sekhanov.desingpatterns.behavioralpatterns.visitor.Circle circle = new com.sekhanov.desingpatterns.behavioralpatterns.visitor.Circle(2, 4
