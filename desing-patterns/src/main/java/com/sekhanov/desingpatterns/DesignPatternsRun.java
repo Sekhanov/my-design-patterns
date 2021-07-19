@@ -22,10 +22,8 @@ import com.sekhanov.desingpatterns.behavioralpatterns.visitor.ConcreteVisitor;
 import com.sekhanov.desingpatterns.behavioralpatterns.visitor.Dot;
 import com.sekhanov.desingpatterns.behavioralpatterns.visitor.Visitor;
 import com.sekhanov.desingpatterns.creationalpatterns.builder.Message;
+import com.sekhanov.desingpatterns.creationalpatterns.prototipe.Command;
 import com.sekhanov.desingpatterns.creationalpatterns.singleton.Singleton;
-import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Circle;
-import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Delegate;
-import com.sekhanov.desingpatterns.objectoriented.delegationpattern.Rectangle;
 import com.sekhanov.desingpatterns.structuralpatterns.Composite.CircleComponent;
 import com.sekhanov.desingpatterns.structuralpatterns.Composite.CompositeGraphics;
 import com.sekhanov.desingpatterns.structuralpatterns.decorator.ConcreteComponent;
@@ -43,20 +41,27 @@ public class DesignPatternsRun implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        builder();
-        // demoChainOfResponsibility();
-        // demoSingleton();
-        // demoDelegate();
-        // demoFacade();
-        // demoBuilder();
-        // demoObserver();
-        // composite();
-        // decorator();
-        // visitor();
-        // mediator();
-        // strategy();
+//       builder();
+            prototype();
+//         demoChainOfResponsibility();
+//         demoSingleton();
+//         demoFacade();
+//         demoObserver();
+//         composite();
+//         decorator();
+//         visitor();
+//         mediator();
+//         strategy();
 //        proxy();
 
+    }
+
+    private void prototype() {
+        Command command = new Command();
+        command.setName("hello");
+        command.setScript("System.out.print('Hello World')");
+        command.setSize(10);
+        System.out.println(command.clone());
     }
 
     private void builder() {
@@ -126,13 +131,6 @@ public class DesignPatternsRun implements CommandLineRunner {
 
     private void demoFacade() {
         new PcFacade().copyFromDvdRomToHdd();
-    }
-
-    private void demoDelegate() {
-        Delegate delegate = new Delegate(new Circle());
-        delegate.draw();
-        Delegate delegate2 = new Delegate(new Rectangle());
-        delegate2.draw();
     }
 
     private void demoSingleton() {
