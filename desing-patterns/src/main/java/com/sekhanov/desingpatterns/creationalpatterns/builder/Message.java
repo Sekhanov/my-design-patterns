@@ -10,60 +10,51 @@ public class Message {
     private String theme;
     private String body;
 
-    /**
-     * @return String return the sender
-     */
-    public String getSender() {
-        return sender;
-    }
-
-    /**
-     * @param sender the sender to set
-     */
-    public void setSender(String sender) {
+    private Message(String sender, String receiver, String theme, String body) {
         this.sender = sender;
-    }
-
-    /**
-     * @return String return the reciever
-     */
-    public String getReceiver() {
-        return receiver;
-    }
-
-    /**
-     * @param reciever the reciever to set
-     */
-    public void setReceiver(String reciever) {
-        this.receiver = reciever;
-    }
-
-    /**
-     * @return String return the theme
-     */
-    public String getTheme() {
-        return theme;
-    }
-
-    /**
-     * @param theme the theme to set
-     */
-    public void setTheme(String theme) {
+        this.receiver = receiver;
         this.theme = theme;
-    }
-
-    /**
-     * @return String return the body
-     */
-    public String getBody() {
-        return body;
-    }
-
-    /**
-     * @param body the body to set
-     */
-    public void setBody(String body) {
         this.body = body;
     }
 
+    public static class Builder {
+
+        private String sender;
+        private String receiver;
+        private String theme = "default theme";
+        private String body = "default body";
+
+        public Builder(String receiver, String sender) {
+            this.receiver = receiver;
+            this.sender = sender;
+        }
+
+        public Builder setTheme(String theme) {
+            this.theme = theme;
+            return this;
+        }
+
+        public Builder setBody(String body) {
+            this.body = body;
+            return this;
+        }
+
+        public Message build() {
+            return new Message(this.sender, this.receiver, this.theme, this.body);
+
+        }
+    }
+
+    @Override public String toString() {
+        return "Message{" +
+            "sender='" + sender + '\'' +
+            ", receiver='" + receiver + '\'' +
+            ", theme='" + theme + '\'' +
+            ", body='" + body + '\'' +
+            '}';
+    }
+
+    public void sendMessage() {
+        System.out.println(this + "sent");
+    }
 }
