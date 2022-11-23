@@ -9,6 +9,6 @@ public class ConcreteSubscriber implements Subscriber {
 
     @Override
     public void update(Payload payload) {
-        System.out.println(String.format("%s got the next info: %s", name, payload.getInfo()));
+        System.out.printf("%s got the next info: %s%n", name, payload.getInfo());
     }
 }

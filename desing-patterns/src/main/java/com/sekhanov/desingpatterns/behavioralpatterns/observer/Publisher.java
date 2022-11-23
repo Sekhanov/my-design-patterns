@@ -5,9 +5,9 @@ import java.util.Set;
 
 public class Publisher {
 
-    private Payload payload = new Payload();
+    private final Payload payload = new Payload();
 
-    private Set<Subscriber> subscribers = new HashSet<>();
+    private final Set<Subscriber> subscribers = new HashSet<>();
 
     public boolean subscribe(Subscriber subscriber) {
         return subscribers.add(subscriber);
