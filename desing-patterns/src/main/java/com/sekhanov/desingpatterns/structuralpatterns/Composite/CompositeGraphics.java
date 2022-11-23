@@ -11,7 +11,7 @@ public class CompositeGraphics implements GraphicsComponent {
     private List<GraphicsComponent> graphicsComponentList = new ArrayList<>();
 
     @Override
-    public void paint() {        
+    public void paint() {
         for (GraphicsComponent g : graphicsComponentList) {
             g.paint();
         }

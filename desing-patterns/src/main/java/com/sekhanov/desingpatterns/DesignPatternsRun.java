@@ -1,20 +1,14 @@
 package com.sekhanov.desingpatterns;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.sekhanov.desingpatterns.behavioralpatterns.Observer.Monitor;
-import com.sekhanov.desingpatterns.behavioralpatterns.Observer.TemperatureRegulator;
-import com.sekhanov.desingpatterns.behavioralpatterns.Observer.TemperatureSensor;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.CheckCorrectPasswordMiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.CheckLoginExistMiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.MiddleWare;
 import com.sekhanov.desingpatterns.behavioralpatterns.chainofresponsibility.Server;
 import com.sekhanov.desingpatterns.behavioralpatterns.mediator.ConcreteMediator;
 import com.sekhanov.desingpatterns.behavioralpatterns.mediator.ConcreteSender;
+import com.sekhanov.desingpatterns.behavioralpatterns.observer.ConcreteSubscriber;
+import com.sekhanov.desingpatterns.behavioralpatterns.observer.Publisher;
+import com.sekhanov.desingpatterns.behavioralpatterns.observer.Subscriber;
 import com.sekhanov.desingpatterns.behavioralpatterns.strategy.Context;
 import com.sekhanov.desingpatterns.behavioralpatterns.strategy.StrategyOne;
 import com.sekhanov.desingpatterns.behavioralpatterns.strategy.StrategyTwo;
@@ -31,6 +25,12 @@ import com.sekhanov.desingpatterns.structuralpatterns.decorator.ConcreteDecorato
 import com.sekhanov.desingpatterns.structuralpatterns.facade.PcFacade;
 import com.sekhanov.desingpatterns.structuralpatterns.proxy.Producer;
 import com.sekhanov.desingpatterns.structuralpatterns.proxy.ProxyPhoneProducer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class DesignPatternsRun implements CommandLineRunner {
@@ -40,9 +40,11 @@ public class DesignPatternsRun implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
+        observer();
+
 //       builder();
-            prototype();
+//        prototype();
 //         demoChainOfResponsibility();
 //         demoSingleton();
 //         demoFacade();
@@ -56,6 +58,15 @@ public class DesignPatternsRun implements CommandLineRunner {
 
     }
 
+    private void observer() {
+        Publisher publisher = new Publisher();
+        Subscriber subscriber1 = new ConcreteSubscriber("Ivan");
+        Subscriber subscriber2 = new ConcreteSubscriber("Sergey");
+        publisher.subscribe(subscriber1);
+        publisher.subscribe(subscriber2);
+        publisher.businessLogic("Busines is working");
+    }
+
     private void prototype() {
         Command command = new Command();
         command.setName("hello");
@@ -66,10 +77,10 @@ public class DesignPatternsRun implements CommandLineRunner {
 
     private void builder() {
         Message message = new Message
-            .Builder("sekhanov@gmail.com", "sekahnov@akvelon.com")
-            .setTheme("new theme")
-            .setBody("email body")
-            .build();
+                .Builder("sekhanov@gmail.com", "sekahnov@akvelon.com")
+                .setTheme("new theme")
+                .setBody("email body")
+                .build();
         message.sendMessage();
     }
 
@@ -121,14 +132,6 @@ public class DesignPatternsRun implements CommandLineRunner {
         compositeGraphics.paint();
     }
 
-    private void demoObserver() {
-        TemperatureSensor temperatureSensor = new TemperatureSensor();
-        temperatureSensor.attach(new Monitor());
-        temperatureSensor.attach(new TemperatureRegulator());
-        temperatureSensor.setTemperature(50);
-        temperatureSensor.setTemperature(100);
-    }
-
     private void demoFacade() {
         new PcFacade().copyFromDvdRomToHdd();
     }
@@ -160,8 +163,7 @@ public class DesignPatternsRun implements CommandLineRunner {
                 login = bufferedReader.readLine();
                 System.out.println("enter password");
                 password = bufferedReader.readLine();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             success = server.logIn(login, password);
